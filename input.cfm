@@ -7,13 +7,21 @@
 	</cflock>
 </cfif>
 <cfif isdefined("form.week")>
+	<cfparam name="form.set_nickpower" default="0">
+	<cfif form.set_nickpower and not nickPower>
+		<cfquery dataSource="pool">insert into `np`(`year`,`week`) values('#session.year#','#form.week#')</cfquery>
+		<cfset nickPower=1>
+	<cfelseif not form.set_nickpower and nickPower>
+		<cfquery dataSource="pool">delete from `np` where `year`='#session.year#' and `week`='#form.week#'</cfquery>
+		<cfset nickPower=0>
+	</cfif>
 	<cflock name="pool" timeout="30">
 	<cfquery datasource="pool">delete from games where week=#form.week# and year=#session.year#</cfquery>
 	<cfloop from="1" to="63" index="i">
-		<cfset NP = nickPower and i lt 63 and isNumeric(evaluate("balls#i#"))>
+		<cfif evaluate("balls#i#") is ""><cfset form["balls#i#"]="NULL"></cfif>
 		<cfquery datasource="pool">insert into 
-			games  (year,week,round,game,path,player,name,result,buyback<cfif NP>,balls</cfif>)
-			values (#session.year#,#form.week#,#evaluate("round#i#")#,#evaluate("game#i#")#,#evaluate("path#i#")#,#evaluate("player#i#")#,'#ucase(evaluate("name#i#"))#',#evaluate("result#i#")#,#evaluate("buyback#i#")#<cfif NP>,#evaluate("balls#i#")#</cfif>)
+			games  (year,week,round,game,path,player,name,result,buyback,balls)
+			values (#session.year#,#form.week#,#evaluate("round#i#")#,#evaluate("game#i#")#,#evaluate("path#i#")#,#evaluate("player#i#")#,'#ucase(evaluate("name#i#"))#',#evaluate("result#i#")#,#evaluate("buyback#i#")#,#evaluate("balls#i#")#)
 		</cfquery>
 	</cfloop>
 	<!---update scoring--->
@@ -24,6 +32,11 @@
 	<cflocation url="input.cfm?week=#form.week#" addtoken="no">
 	</cflock>
 </cfif>
+
+<cfif week0 is "">
+	<cflocation url="week0.cfm" addToken="no">
+</cfif>
+
 
 <cfquery datasource="pool" name="weeks">select max(week) as w from games where year=#session.year#</cfquery>
 <cfset maxWeek=iif(weeks.w is "",1,"#weeks.w#+1")>
@@ -78,7 +91,8 @@
 </cfloop>
 </select><br>
 <input type="hidden" name="week" value="#week#">
-	&nbsp;#dateformat(dateadd("ww",week,week0),"dd/mm/yy")#<br><br>
+	&nbsp;#dateformat(dateadd("ww",week,week0),"dd/mm/yy")#
+	<p><input type="checkbox" value="1" name="set_nickpower" id="nickp" onclick="prepForm(this.form); this.form.submit()" <cfif nickPower>checked="checked"</cfif>><label for="nickp" <cfif not nickPower>style="color:silver"</cfif>> nick power</label></p>
 	<input type="submit" value="  Save  " class="button"><br>
 	<input type="button" value="Delete Week #week#" class="button" onClick="if(confirm('Are you sure?\n\nYou are about to delete this week\'s results.')){location='input.cfm?deleteWk=#week#'}"><br>
 	<br><br>
@@ -144,7 +158,7 @@
 			<option <cfif res["1#round_##game_#"].name is res["#player##round##game#"].name and res["1#round_##game_#"].name is not "">selected</cfif>>#res["1#round_##game_#"].name#
 			<option <cfif res["2#round_##game_#"].name is res["#player##round##game#"].name and res["2#round_##game_#"].name is not "">selected</cfif>>#res["2#round_##game_#"].name#
 		
-		</cfif></select><cfif nickPower and round lt 6><input type="text" name="balls#c#" value="#res["#player##round##game#"].balls#" tabindex="#evaluate(c*2+1)#" size="1" maxlength="1" style="width:1.2em;" vspace="0"></cfif>
+		</cfif></select><cfif nickPower and round lt 6><input type="text" name="balls#c#" value="#res["#player##round##game#"].balls#" tabindex="#evaluate(c*2+1)#" size="1" maxlength="1" style="width:2em; border:1px solid grey;" vspace="0"><cfelse><input type="hidden" name="balls#c#" value="#res["#player##round##game#"].balls#"></cfif>
 		<input type="hidden" name="path#c#" value="#c#">
 		<input type="hidden" name="round#c#" value="#round#">
 		<input type="hidden" name="game#c#" value="#game#">

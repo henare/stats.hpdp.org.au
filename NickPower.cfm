@@ -1,4 +1,4 @@
-<cfquery datasource="pool" name="NP">select distinct week as wk from games where balls is not null and year=#session.year# order by week</cfquery>
+<cfquery datasource="pool" name="NP">select `week` as wk from `np` where `year`='#session.year#' order by week</cfquery>
 <cfparam name="sortfield" default="points">
 <cfparam name="dir" default="desc">
 <cfparam name="type" default="numeric">
@@ -44,17 +44,18 @@ function sortBy(f,d,t){
 </cfoutput>
 
 <cfquery datasource="pool" name="results">
-	select a.name,b.name as name2,a.balls as balls1,b.balls as balls2,a.week from games a,games b 
+	select a.name,b.name as name2,a.balls as balls1,b.balls as balls2,a.week from games a,games b
 	where 	(a.year=b.year and a.week=b.week and a.round=b.round and a.game=b.game and a.name<>b.name)
-			and a.buyback=0 and a.balls is not null and a.year=#session.year# 
-	order by a.name,a.week</cfquery>
+			and a.buyback=0 and a.balls is not null and a.year=#session.year# and a.week in (#valuelist(NP.wk)#)
+	order by a.name,a.week
+</cfquery>
 <cfset ppl=structNew()>
 <cfoutput query="results" group="name">
 	<cfset ppl[name]=structNew()>
 	<cfset ppl[name].name=name><cfset ppl[name].points=0><cfset ppl[name].diff=0>
-	<cfset ppl[name][1]=-1><cfset ppl[name][2]=-1><cfset ppl[name][3]=-1>
+	<cfloop query="NP"><cfset ppl[name]["w"&wk]=-1></cfloop>
 	<cfoutput group="week">
-		<cfset wk=week-NP.wk+1>
+		<cfset wk="w"&week>
 		<cfset ppl[name][wk]=0>
 		<cfoutput>
 			<cfif balls2 is ""><cfset results.balls2=0></cfif>
@@ -65,9 +66,10 @@ function sortBy(f,d,t){
 	</cfoutput>
 </cfoutput>
 
+
 <cfoutput>
 <table width="100%">
-<tr><td><b class="pgTitle">Nick Power Cup</b></td><td align="right" valign="bottom">#dateformat(dateadd("ww",NP.wk,week0),"dd/mm/yy")# - #dateformat(dateadd("ww",NP.wk+2,week0),"dd/mm/yy")#</td></tr>
+<tr><td><b class="pgTitle">Nick Power Cup</b></td><td align="right" valign="bottom">#dateformat(dateadd("ww",NP.wk,week0),"dd/mm/yy")# - #dateformat(dateadd("ww",listlast(valuelist(NP.wk)),week0),"dd/mm/yy")#</td></tr>
 <cfif session.year is 2004><tr><td colspan="2" align="center"><img src="pics/np2004.jpg" width="352" height="288" border="0"></td></tr></cfif>
 </table>
 <table border="1" bordercolor="slateGray" cellspacing="0" cellpadding="0">
@@ -76,8 +78,8 @@ function sortBy(f,d,t){
 <td width="1"><img src="spacer.gif" width="1" height="1"></td>
 <td width="70" align="center"><a href="javascript:sortBy('points',<cfif sortfield is "points" and dir is "desc">'asc'<cfelse>'desc'</cfif>,'numeric')" class="title">&nbsp;points&nbsp;</a></td>
 <td width="1"><img src="spacer.gif" width="1" height="1"></td>
-<cfloop from="1" to="3" index="i">
-	<td align="center" width="70"><a href="javascript:sortBy('#i#',<cfif sortfield is "#i#" and dir is "desc">'asc'<cfelse>'desc'</cfif>,'numeric')" class="title">week&nbsp;#i#</a></td>
+<cfloop query="NP">
+	<td align="center" width="70"><a href="javascript:sortBy('w#wk#',<cfif sortfield is "w#wk#" and dir is "desc">'asc'<cfelse>'desc'</cfif>,'numeric')" class="title">week&nbsp;#currentRow#</a></td>
 </cfloop>
 <!---<td align="center">
 	<a href="javascript:sortBy('diff',<cfif sortfield is "diff" and dir is "desc">'asc'<cfelse>'desc'</cfif>,'numeric')" class="title">ball<br>difference</a>
@@ -95,8 +97,8 @@ function sortBy(f,d,t){
 	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
 	<td align="center">#ppl[nm].points#</td>
 	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
-	<cfloop from="1" to="3" index="i">
-		<td align="center"><cfif ppl[nm][i] ge 0>#ppl[nm][i]#<cfelse>-</cfif></td>
+	<cfloop query="NP">
+		<td align="center"><cfif ppl[nm]["w"&wk] ge 0>#ppl[nm]["w"&wk]#<cfelse>-</cfif></td>
 	</cfloop>
 	<!---<td align="center">#numberformat(ppl[nm].diff,"+0")#</td>--->
 	</tr>

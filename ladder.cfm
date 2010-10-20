@@ -50,6 +50,7 @@ function sortBy(f,d,t){
 
 <cfinclude template="menu.cfm">
 
+<cfif week0 is ""></td></tr></table></body></html><cfabort></cfif>
 
 <form action="ladder.cfm" method="get" class="sm2">
 <cfif session.year ge 2004 and isNumeric(weeks.maxweek)>
