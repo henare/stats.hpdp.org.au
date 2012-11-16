@@ -46,7 +46,8 @@
 
 <!--- redirect to login --->
 <cfset template = GetFileFromPath(GetTemplatePath())>
-<cfif (template is "input.cfm" or template is "week0.cfm") and not session.admin>
+<!-- Disable login 2011-11-23. add ' and not session.admin' to enable -->
+<cfif (template is "input.cfm" or template is "week0.cfm")>
 	<cflocation url="login.cfm?target=#urlencodedformat(GetFileFromPath(GetTemplatePath())&"?"&CGI.QUERY_STRING)#" addtoken="no">
 	<cfabort>
 </cfif>
