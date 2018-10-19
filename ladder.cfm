@@ -4,7 +4,7 @@
 <cfparam name="top20" default="0">
 <cfif not isBoolean(top20)><cfset top20=0></cfif>
 
-<cfquery datasource="pool" name="weeks">select max(week) as maxweek from games where year=#session.year#</cfquery>
+<cfquery datasource="pool" name="weeks">select max(week) as maxweek from games where year=<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_INTEGER"/></cfquery>
 <cfparam name="wk" default="#weeks.maxweek#">
 <cfif not isnumeric(wk)><cfset wk=weeks.maxweek></cfif>
 <cfif not isnumeric(wk)><cfset wk=100></cfif>
@@ -77,7 +77,7 @@ function sortBy(f,d,t){
 </cfoutput>
 
 <cfset sc=structNew()>
-<cfquery datasource="pool" name="scoring">select * from scoring where year=#session.year#</cfquery>
+<cfquery datasource="pool" name="scoring">select * from scoring where year=<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_INTEGER"/></cfquery>
 <cfoutput query="scoring">
 	<cfset sc[week]=structNew()>
 	<cfset sc[week].bb=bb>
@@ -91,9 +91,9 @@ function sortBy(f,d,t){
 </cfloop>
 
 <cfif top20>
-	<cfquery datasource="pool" name="results">select * from games where year=#session.year# and week<=#wk# and buyback=0 and result=0 order by name,round desc,week</cfquery>
+	<cfquery datasource="pool" name="results">select * from games where year=<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_INTEGER"/> and week<=<cfqueryparam value="#wk#" cfsqltype="CF_SQL_INTEGER"/> and buyback=0 and result=0 order by name,round desc,week</cfquery>
 <cfelse>
-	<cfquery datasource="pool" name="results">select * from games where year=#session.year# and week<=#wk# order by name,week,round desc,buyback,path</cfquery>
+	<cfquery datasource="pool" name="results">select * from games where year=<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_INTEGER"/> and week<=<cfqueryparam value="#wk#" cfsqltype="CF_SQL_INTEGER"/> order by name,week,round desc,buyback,path</cfquery>
 </cfif>
 
 <cfset ppl=structNew()>

@@ -1,6 +1,6 @@
 <cfparam name="nm" default="">
 <cfparam name="load" default="0">
-<cfquery datasource="pool" name="img">select * from pics where name='#nm#' order by picID desc</cfquery>
+<cfquery datasource="pool" name="img">select * from pics where name=<cfqueryparam value="#nm#" cfsqltype="CF_SQL_VARCHAR"/> order by picID desc</cfquery>
 
 <div style="position:absolute">
 <cfoutput query="img">

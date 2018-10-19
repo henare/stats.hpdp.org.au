@@ -8,7 +8,7 @@
 <!---	<cfexecute name="C:\Perl\ImageMagick-5.5.7-Q16\convert.exe" 
 		arguments="#ExpandPath('pics')#\#cffile.serverFile# -resize 1000x80 #ExpandPath('pics')#\tn_#cffile.serverFile#" 
 		timeout="2"></cfexecute>--->
-	<cfquery datasource="pool">insert into pics(name,pic) values('#nm#','#cffile.serverFile#')</cfquery>
+	<cfquery datasource="pool">insert into pics(name,pic) values(<cfqueryparam value="#nm#" cfsqltype="CF_SQL_VARCHAR"/>,<cfqueryparam value="#cffile.serverFile#" cfsqltype="CF_SQL_VARCHAR"/>)</cfquery>
 	<cflocation url="photos.cfm?nm=#nm#&#ts#" addtoken="no">
 </cfif>
 <html>
@@ -33,7 +33,7 @@ function valid(form){
 <b class="pgTitle">Photos</b>
 <cfif session.year lt 2003><br><br><br><nobr>not available for this year</nobr><br><br><br><a href="javascript:history.go(-1)" class="sm">back</a></td></tr></table></form></body></html><cfabort></cfif>
 <br><br>
-<cfquery datasource="pool" name="names">select distinct name from games where name<>'' and year=#session.year# order by name</cfquery>
+<cfquery datasource="pool" name="names">select distinct name from games where name<>'' and year=<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_INTEGER"/> order by name</cfquery>
 <form action="photos.cfm" method="get">
 <select name="nm" onChange="this.form.submit()" class="weekSelect">
 <cfif nm is ""><option>-select player-</cfif>

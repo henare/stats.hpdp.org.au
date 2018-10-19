@@ -1,1 +1,1 @@
-<cflocation url="ladder.cfm?year=#year(now())#&#ts#" addtoken="no">
+<cfinclude template="default.cfm">

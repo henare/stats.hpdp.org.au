@@ -1,4 +1,12 @@
-<cflocation url="ladder.cfm?year=#year(now())#" addtoken="no">
+
+<cfquery dataSource="pool" name="np1">select * from `np` where `year`=<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_VARCHAR"/> and `week`=1</cfquery>
+
+<cfif np1.recordCount>
+	<cflocation url="NickPower.cfm?year=#year(now())#" addtoken="no">
+<cfelse>
+	<cflocation url="ladder.cfm?year=#year(now())#" addtoken="no">
+</cfif>
+
 <html>
 <head>
 <title>HPDP Pool Comp</title>

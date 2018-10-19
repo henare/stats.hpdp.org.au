@@ -56,7 +56,7 @@ function player(pname){
 <b class="pgTitle">Player Profile</b>
 <cfif session.year lt 2003><br><br><br><nobr>not available for this year</nobr><br><br><br><a href="javascript:history.go(-1)" class="sm">back</a></td></tr></table></form></body></html><cfabort></cfif>
 <br><br>
-<cfquery datasource="pool" name="names">select distinct name from games where name<>'' and year=#session.year# order by name</cfquery>
+<cfquery datasource="pool" name="names">select distinct name from games where name<>'' and year=<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_INTEGER"/> order by name</cfquery>
 <form action="player.cfm" method="get">
 <select name="nm" onChange="this.form.submit()" class="weekSelect">
 <cfif nm is ""><option>-select player-</cfif>
@@ -88,7 +88,7 @@ function player(pname){
 
 <!--- STATS --->
 <cfset sc=structNew()>
-<cfquery datasource="pool" name="scoring">select * from scoring where year=#session.year#</cfquery>
+<cfquery datasource="pool" name="scoring">select * from scoring where year=<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_INTEGER"/></cfquery>
 <cfoutput query="scoring">
 	<cfset sc[week]=structNew()>
 	<cfset sc[week].bb=bb>
@@ -97,17 +97,17 @@ function player(pname){
 		<cfset sc[week]['r'&i] = evaluate("r#i#")>
 	</cfloop>
 </cfoutput>
-<cfquery datasource="pool" name="scoring">select * from scoring where year=#session.year#</cfquery>
-<cfquery datasource="pool" name="weeks">select max(week) as maxweek from games where year=#session.year#</cfquery>
+<cfquery datasource="pool" name="scoring">select * from scoring where year=<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_INTEGER"/></cfquery>
+<cfquery datasource="pool" name="weeks">select max(week) as maxweek from games where year=<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_INTEGER"/></cfquery>
 <cfif weeks.maxweek is ""><cfset weeks.maxweek=0></cfif>
 <cfloop from="1" to="#weeks.maxweek#" index="i">
 	<cfif not structKeyExists(sc,i)><cfset sc[i] = sc[-1]></cfif>
 </cfloop>
 
-<cfquery datasource="pool" name="top20results">select week from games where name='#nm#' and year=#session.year# and buyback=0 and result=0 order by round desc,week LIMIT 20</cfquery>
+<cfquery datasource="pool" name="top20results">select week from games where name=<cfqueryparam value="#nm#" cfsqltype="CF_SQL_VARCHAR"/> and year=<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_INTEGER"/> and buyback=0 and result=0 order by round desc,week LIMIT 20</cfquery>
 <cfset weeklist=valuelist(top20results.week)>
 
-<cfquery datasource="pool" name="results">select * from games where name='#nm#' and year=#session.year# <cfif top20>and buyback=0 and week in (#weeklist#)</cfif> order by name,week,round desc,buyback</cfquery>
+<cfquery datasource="pool" name="results">select * from games where name=<cfqueryparam value="#nm#" cfsqltype="CF_SQL_VARCHAR"/> and year=<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_INTEGER"/> <cfif top20>and buyback=0 and week in (<cfqueryparam value="#weeklist#" cfsqltype="CF_SQL_INTEGER" list="true"/>)</cfif> order by name,week,round desc,buyback</cfquery>
 
 <cfset ppl=structNew()>
 <cfoutput query="results" group="name">
@@ -190,7 +190,7 @@ function player(pname){
 <cfif not top20>
 	<!--- OPPONENTS --->
 	<h3>OPPONENTS</h3>
-	<cfquery datasource="pool" name="history">select * from games g1,games g2 where (g1.week=g2.week and g1.round=g2.round and g1.game=g2.game) and (g1.name='#nm#' or g2.name='#nm#') and g1.round<6 and g1.year=#session.year# and g2.year=#session.year# <cfif top20>and g1.buyback=0 and g1.week in (#weeklist#)</cfif> order by g1.week desc,g1.round,g1.game,g1.result desc</cfquery>
+	<cfquery datasource="pool" name="history">select * from games g1,games g2 where (g1.week=g2.week and g1.round=g2.round and g1.game=g2.game) and (g1.name=<cfqueryparam value="#nm#" cfsqltype="CF_SQL_VARCHAR"/> or g2.name=<cfqueryparam value="#nm#" cfsqltype="CF_SQL_VARCHAR"/>) and g1.round<6 and g1.year=<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_INTEGER"/> and g2.year=<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_INTEGER"/> <cfif top20>and g1.buyback=0 and g1.week in (<cfqueryparam value="#weeklist#" cfsqltype="CF_SQL_INTEGER" list="true"/>)</cfif> order by g1.week desc,g1.round,g1.game,g1.result desc</cfquery>
 	<cfset opp=structNew()>
 	<cfoutput query="history" group="round">
 		<cfoutput group="game">
@@ -283,9 +283,9 @@ function player(pname){
 		<cfquery datasource="pool" name="history">
 			select g1.*,g2.name as name2,g2.buyback as buyback2 from games g1,games g2 
 			where 	(g1.year=g2.year and g1.week=g2.week and g1.round=g2.round and g1.game=g2.game) 
-				and g1.name='#nm#' and g2.name='#nm2#' 
-				and g1.round<6 and g1.year=#session.year# 
-				<cfif top20>and g1.buyback=0 and g1.week in (#weeklist#)</cfif>
+				and g1.name=<cfqueryparam value="#nm#" cfsqltype="CF_SQL_VARCHAR"/> and g2.name=<cfqueryparam value="#nm2#" cfsqltype="CF_SQL_VARCHAR"/> 
+				and g1.round<6 and g1.year=<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_INTEGER"/> 
+				<cfif top20>and g1.buyback=0 and g1.week in (<cfqueryparam value="#weeklist#" cfsqltype="CF_SQL_INTEGER" list="true"/>)</cfif>
 			order by g1.week desc,g1.buyback,g1.path,g1.round,g1.game
 		</cfquery>
 		<cfset histType="opponent">
@@ -301,9 +301,9 @@ function player(pname){
 <cfquery datasource="pool" name="history">
 	select g1.*,g2.name as name2,g2.buyback as buyback2 from games g1,games g2 
 	where 	(g1.year=g2.year and g1.week=g2.week and g1.round=g2.round and g1.game=g2.game) 
-		and g1.name='#nm#' and g2.name<>'#nm#'
-		and g1.round<6 and g1.year=#session.year# 
-		<cfif top20>and g1.buyback=0 and g1.week in (#weeklist#)</cfif>
+		and g1.name=<cfqueryparam value="#nm#" cfsqltype="CF_SQL_VARCHAR"/> and g2.name<><cfqueryparam value="#nm#" cfsqltype="CF_SQL_VARCHAR"/>
+		and g1.round<6 and g1.year=<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_INTEGER"/> 
+		<cfif top20>and g1.buyback=0 and g1.week in (<cfqueryparam value="#weeklist#" cfsqltype="CF_SQL_INTEGER" list="true"/>)</cfif>
 	order by g1.week desc,g1.buyback,g1.path,g1.round,g1.game
 </cfquery>
 <cfset histType="overall">

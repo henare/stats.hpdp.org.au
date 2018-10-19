@@ -1,6 +1,6 @@
-<cfquery datasource="pool" name="weeks">select max(week) as w from games where year=#session.year#</cfquery>
+<cfquery datasource="pool" name="weeks">select max(week) as w from games where year=<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_INTEGER"/></cfquery>
 <cfset maxWeek=iif(weeks.w is "",0,weeks.w)>
-<cfquery datasource="pool" name="games">select * from games where week=#session.week# and year=#session.year#</cfquery>
+<cfquery datasource="pool" name="games">select * from games where week=<cfqueryparam value="#session.week#" cfsqltype="CF_SQL_INTEGER"/> and year=<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_INTEGER"/></cfquery>
 <cfset res=structNew()>
 <!--- initialise structure --->
 <cfset ind=4><cfset r=1><cfset g=0><cfset c=32>
@@ -69,7 +69,7 @@ function roll(cell,on){
 
 <br><br>
 </cfoutput>
-	<cfquery datasource="pool" name="scoring">select * from scoring where year=#session.year# and week=#session.week# order by week desc</cfquery>
+	<cfquery datasource="pool" name="scoring">select * from scoring where year=<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_INTEGER"/> and week=<cfqueryparam value="#session.week#" cfsqltype="CF_SQL_INTEGER"/> order by week desc</cfquery>
 	<cfoutput query="scoring">
 		<div align="center"><br><br><br><br><br><br><br><br><br>
 		<b class="sm3">scoring</b>
@@ -89,7 +89,7 @@ function roll(cell,on){
 </td>
 
 <cfif games.recordCount is 0>
-	<cfquery datasource="pool" name="winners">select * from games where year=#session.year# and (round=5 or round=4) order by week desc,round desc,result desc</cfquery>
+	<cfquery datasource="pool" name="winners">select * from games where year=<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_INTEGER"/> and (round=5 or round=4) order by week desc,round desc,result desc</cfquery>
 	<cfif winners.recordCount is 0></tr></table></body></html><cfabort></cfif>
 	<td valign="top"><blockquote><br><br>
 	<table><tr><td align="right">

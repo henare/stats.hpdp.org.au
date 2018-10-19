@@ -1,4 +1,4 @@
-<cfquery datasource="pool" name="NP">select `week` as wk from `np` where `year`='#session.year#' order by week</cfquery>
+<cfquery datasource="pool" name="NP">select `week` as wk from `np` where `year`=<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_INTEGER"/> order by week</cfquery>
 <cfparam name="sortfield" default="points">
 <cfparam name="dir" default="desc">
 <cfparam name="type" default="numeric">
@@ -46,7 +46,7 @@ function sortBy(f,d,t){
 <cfquery datasource="pool" name="results">
 	select a.name,b.name as name2,a.balls as balls1,b.balls as balls2,a.week from games a,games b
 	where 	(a.year=b.year and a.week=b.week and a.round=b.round and a.game=b.game and a.name<>b.name)
-			and a.buyback=0 and a.balls is not null and a.year=#session.year# and a.week in (#valuelist(NP.wk)#)
+			and a.buyback=0 and a.balls is not null and a.year=<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_INTEGER"/> and a.week in (<cfqueryparam value="#valuelist(NP.wk)#" cfsqltype="CF_SQL_INTEGER" list="true"/>)
 	order by a.name,a.week
 </cfquery>
 <cfset ppl=structNew()>

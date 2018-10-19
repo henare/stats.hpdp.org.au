@@ -2,32 +2,31 @@
 
 <cfif isdefined("deleteWk")>
 	<cflock name="pool" timeout="30">
-	<cfquery datasource="pool">delete from games where week=#url.deleteWk# and year=#session.year#</cfquery>
+	<cfquery datasource="pool">delete from games where week=<cfqueryparam value="#url.deleteWk#" cfsqltype="CF_SQL_INTEGER"/> and year=<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_INTEGER"/></cfquery>
 	<cflocation url="input.cfm?week=#deleteWk#" addtoken="no">
 	</cflock>
 </cfif>
 <cfif isdefined("form.week")>
 	<cfparam name="form.set_nickpower" default="0">
 	<cfif form.set_nickpower and not nickPower>
-		<cfquery dataSource="pool">insert into `np`(`year`,`week`) values('#session.year#','#form.week#')</cfquery>
+		<cfquery dataSource="pool">insert into `np`(`year`,`week`) values(<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_INTEGER"/>,<cfqueryparam value="#form.week#" cfsqltype="CF_SQL_INTEGER"/>)</cfquery>
 		<cfset nickPower=1>
 	<cfelseif not form.set_nickpower and nickPower>
-		<cfquery dataSource="pool">delete from `np` where `year`='#session.year#' and `week`='#form.week#'</cfquery>
+		<cfquery dataSource="pool">delete from `np` where `year`=<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_INTEGER"/> and `week`=<cfqueryparam value="#form.week#" cfsqltype="CF_SQL_INTEGER"/></cfquery>
 		<cfset nickPower=0>
 	</cfif>
 	<cflock name="pool" timeout="30">
-	<cfquery datasource="pool">delete from games where week=#form.week# and year=#session.year#</cfquery>
+	<cfquery datasource="pool">delete from games where week=<cfqueryparam value="#form.week#" cfsqltype="CF_SQL_INTEGER"/> and year=<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_INTEGER"/></cfquery>
 	<cfloop from="1" to="63" index="i">
-		<cfif evaluate("balls#i#") is ""><cfset form["balls#i#"]="NULL"></cfif>
 		<cfquery datasource="pool">insert into 
 			games  (year,week,round,game,path,player,name,result,buyback,balls)
-			values (#session.year#,#form.week#,#evaluate("round#i#")#,#evaluate("game#i#")#,#evaluate("path#i#")#,#evaluate("player#i#")#,'#ucase(evaluate("name#i#"))#',#evaluate("result#i#")#,#evaluate("buyback#i#")#,#evaluate("balls#i#")#)
+			values (<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_VARCHAR"/>,<cfqueryparam value="#form.week#" cfsqltype="CF_SQL_VARCHAR"/>,<cfqueryparam value="#evaluate("round#i#")#" cfsqltype="CF_SQL_VARCHAR"/>,<cfqueryparam value="#evaluate("game#i#")#" cfsqltype="CF_SQL_VARCHAR"/>,<cfqueryparam value="#evaluate("path#i#")#" cfsqltype="CF_SQL_VARCHAR"/>,<cfqueryparam value="#evaluate("player#i#")#" cfsqltype="CF_SQL_VARCHAR"/>,<cfqueryparam value="#ucase(evaluate("name#i#"))#" cfsqltype="CF_SQL_VARCHAR"/>,<cfqueryparam value="#evaluate("result#i#")#" cfsqltype="CF_SQL_VARCHAR"/>,<cfqueryparam value="#evaluate("buyback#i#")#" cfsqltype="CF_SQL_VARCHAR"/>,<cfqueryparam value="#evaluate("balls#i#")#" cfsqltype="CF_SQL_VARCHAR" null="#(evaluate("balls#i#") is "")#"/>)
 		</cfquery>
 	</cfloop>
 	<!---update scoring--->
 	<cfif isdefined("form.scoring") and isNumeric(modifier) and isNumeric(bb) and isNumeric(r1) and isNumeric(r2) and isNumeric(r3) and isNumeric(r4) and isNumeric(r5) and isNumeric(r6)>
-		<cfquery datasource="pool">delete from scoring where week=#form.week# and year=#session.year#</cfquery>
-		<cfquery datasource="pool">insert into scoring(year,week,r1,r2,r3,r4,r5,r6,bb,modifier) values(#session.year#,#form.week#,#form.r1#,#form.r2#,#form.r3#,#form.r4#,#form.r5#,#form.r6#,#form.bb#,#form.modifier#)</cfquery>
+		<cfquery datasource="pool">delete from scoring where week=<cfqueryparam value="#form.week#" cfsqltype="CF_SQL_INTEGER"/> and year=<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_INTEGER"/></cfquery>
+		<cfquery datasource="pool">insert into scoring(year,week,r1,r2,r3,r4,r5,r6,bb,modifier) values(<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_VARCHAR"/>,<cfqueryparam value="#form.week#" cfsqltype="CF_SQL_VARCHAR"/>,<cfqueryparam value="#form.r1#" cfsqltype="CF_SQL_VARCHAR"/>,<cfqueryparam value="#form.r2#" cfsqltype="CF_SQL_VARCHAR"/>,<cfqueryparam value="#form.r3#" cfsqltype="CF_SQL_VARCHAR"/>,<cfqueryparam value="#form.r4#" cfsqltype="CF_SQL_VARCHAR"/>,<cfqueryparam value="#form.r5#" cfsqltype="CF_SQL_VARCHAR"/>,<cfqueryparam value="#form.r6#" cfsqltype="CF_SQL_VARCHAR"/>,<cfqueryparam value="#form.bb#" cfsqltype="CF_SQL_VARCHAR"/>,<cfqueryparam value="#form.modifier#" cfsqltype="CF_SQL_VARCHAR"/>)</cfquery>
 	</cfif>
 	<cflocation url="input.cfm?week=#form.week#" addtoken="no">
 	</cflock>
@@ -38,11 +37,11 @@
 </cfif>
 
 
-<cfquery datasource="pool" name="weeks">select max(week) as w from games where year=#session.year#</cfquery>
+<cfquery datasource="pool" name="weeks">select max(week) as w from games where year=<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_INTEGER"/></cfquery>
 <cfset maxWeek=iif(weeks.w is "",1,"#weeks.w#+1")>
 <cfset week=iif(session.week is 0 or session.week gt maxWeek,maxWeek,session.week)>
-<cfquery datasource="pool" name="games">select * from games where week=#week# and year=#session.year#</cfquery>
-<cfquery datasource="pool" name="names">select distinct name from games where name<>'' and year=#session.year# order by name</cfquery>
+<cfquery datasource="pool" name="games">select * from games where week=<cfqueryparam value="#week#" cfsqltype="CF_SQL_INTEGER"/> and year=<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_INTEGER"/></cfquery>
+<cfquery datasource="pool" name="names">select distinct name from games where name<>'' and year=<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_INTEGER"/> order by name</cfquery>
 
 <cfset res=structNew()>
 <!--- initialise structure --->
@@ -72,7 +71,7 @@
 <html>
 <head>
 <cfoutput><title>HPDP Pool Comp Input - Week #week#</title></cfoutput>
-<script language="JavaScript">var playerList = new Array(''<cfoutput query="names">,'#name#'</cfoutput>)</script>
+<script language="JavaScript">var playerList = new Array(''<cfoutput query="names">,'#jsStringFormat(name)#'</cfoutput>)</script>
 <script language="JavaScript" src="input.js" type="text/javascript"></script>
 
 <link rel="stylesheet" type="text/css" href="style.css">
@@ -108,7 +107,7 @@
 	<br>
 	<cfinclude template="showpic.cfm">
 --->
-	<cfquery datasource="pool" name="scoring">select * from scoring where year=#session.year# and (week=#week# or week=-1) order by week desc</cfquery>
+	<cfquery datasource="pool" name="scoring">select * from scoring where year=<cfqueryparam value="#session.year#" cfsqltype="CF_SQL_INTEGER"/> and (week=<cfqueryparam value="#week#" cfsqltype="CF_SQL_INTEGER"/> or week=-1) order by week desc</cfquery>
 		<div align="center"><br><br><br>
 		<table border="0" cellpadding="0" cellspacing="0">
 		<tr><td><input type="checkbox" name="scoring" value="1" onClick="setScoring(this)" id="sc">&nbsp;</td>
