@@ -1,2 +1,3 @@
-WEB-INF/railo/cfclasses/
-WEB-INF/railo/logs/
+_site
+.sass-cache
+.jekyll-metadata
