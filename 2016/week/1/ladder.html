@@ -1,0 +1,1417 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script language="JavaScript">if(this!=top)	top.location="."</script>
+
+<meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+
+<title>HPDP Pool Comp - Players' Ladder</title>
+<link rel="stylesheet" type="text/css" href="/assets/style.css">
+<script language="JavaScript">
+W3C = (document.getElementById) ? 1 : 0;
+IE4 = (document.all && !W3C) ? 1 : 0;
+doc=W3C?document.getElementsByTagName('*'):(IE4?document.all:false)
+function roll(cell,on,ttl){
+	if(!doc) return
+	if(ttl)
+		cell.style.color=on?"slateGray":"black"
+	else
+		cell.style.backgroundColor=on?"#eeeeee":"white"
+}
+function sortBy(f,d,t){
+	with(document.forms[0]){
+		sortfield.value=f;
+		dir.value=d;
+		type.value=t;
+		submit()
+	}
+//	location="ladder.cfm?sort="+field+"&dir="+dir+"&type="+type+"&4111811448"
+}
+</script>
+</head>
+<body topmargin="2" onload="document.forms[0].wk.focus()">
+
+<table border=0 cellspacing=0 cellpadding=0>
+<tr>
+<td rowspan=32 nowrap valign="top"><a href="." class="h1">HPDP&nbsp;<br>Pool Comp<br>2016</a>
+<p>
+<b class="pgTitle">Ladder</b>
+
+<br><br><br>
+<br><br>
+
+<div class="sm2">
+
+<a href="ladder.cfm?top20=1&4111811448">top20</a><br>
+
+<a href="sheet.cfm?4111811448">sheets</a><br>
+<a href="player.cfm?4111811448">players</a><br>
+<a href="NickPower.cfm?4111811448">nick power</a><br>
+<br>
+
+
+
+
+
+			<br><a href="ladder.cfm?wk=1&sortfield=points&dir=desc&type=numeric&top20=0&2410188631=0&year=2018" class="sm2">2018</a>
+
+
+
+			<br><a href="ladder.cfm?wk=1&sortfield=points&dir=desc&type=numeric&top20=0&2410188631=0&year=2017" class="sm2">2017</a>
+
+
+
+
+
+			<br><a href="ladder.cfm?wk=1&sortfield=points&dir=desc&type=numeric&top20=0&2410188631=0&year=2015" class="sm2">2015</a>
+
+
+
+			<br><a href="ladder.cfm?wk=1&sortfield=points&dir=desc&type=numeric&top20=0&2410188631=0&year=2014" class="sm2">2014</a>
+
+
+
+			<br><a href="ladder.cfm?wk=1&sortfield=points&dir=desc&type=numeric&top20=0&2410188631=0&year=2013" class="sm2">2013</a>
+
+
+
+			<br><a href="ladder.cfm?wk=1&sortfield=points&dir=desc&type=numeric&top20=0&2410188631=0&year=2012" class="sm2">2012</a>
+
+
+
+			<br><a href="ladder.cfm?wk=1&sortfield=points&dir=desc&type=numeric&top20=0&2410188631=0&year=2011" class="sm2">2011</a>
+
+
+
+			<br><a href="ladder.cfm?wk=1&sortfield=points&dir=desc&type=numeric&top20=0&2410188631=0&year=2010" class="sm2">2010</a>
+
+
+
+			<br><a href="ladder.cfm?wk=1&sortfield=points&dir=desc&type=numeric&top20=0&2410188631=0&year=2009" class="sm2">2009</a>
+
+
+
+			<br><a href="ladder.cfm?wk=1&sortfield=points&dir=desc&type=numeric&top20=0&2410188631=0&year=2008" class="sm2">2008</a>
+
+
+
+			<br><a href="ladder.cfm?wk=1&sortfield=points&dir=desc&type=numeric&top20=0&2410188631=0&year=2007" class="sm2">2007</a>
+
+
+
+			<br><a href="ladder.cfm?wk=1&sortfield=points&dir=desc&type=numeric&top20=0&2410188631=0&year=2006" class="sm2">2006</a>
+
+
+
+			<br><a href="ladder.cfm?wk=1&sortfield=points&dir=desc&type=numeric&top20=0&2410188631=0&year=2005" class="sm2">2005</a>
+
+
+
+			<br><a href="ladder.cfm?wk=1&sortfield=points&dir=desc&type=numeric&top20=0&2410188631=0&year=2004" class="sm2">2004</a>
+
+
+
+			<br><a href="ladder.cfm?wk=1&sortfield=points&dir=desc&type=numeric&top20=0&2410188631=0&year=2003" class="sm2">2003</a>
+
+
+
+			<br><a href="ladder.cfm?wk=1&sortfield=points&dir=desc&type=numeric&top20=0&2410188631=0&year=2002" class="sm2">2002</a>
+
+
+	<br><br>
+
+
+</div>
+
+
+
+<form action="ladder.cfm" method="get" class="sm2">
+
+	<span class="sm3">
+	standings at<br>
+	<select name="wk" onChange="this.form.submit()" class="sm3">
+
+	<option value="3" >week 3</option>
+
+	<option value="2" >week 2</option>
+
+	<option value="1" selected>week 1</option>
+
+	</select><br>
+	&nbsp;12/10/16
+	</span>
+
+<input type="hidden" name="sortfield" value="points">
+<input type="hidden" name="dir" value="desc">
+<input type="hidden" name="type" value="numeric">
+<input type="hidden" name="top20" value="0">
+<input type="hidden" name="4111811448" value="0">
+</form>
+
+</td>
+<td valign="top">
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<blockquote>
+
+
+<table><tr><td>
+<table border="1" bordercolor="slateGray" cellspacing="0" cellpadding="0">
+<tr bgcolor="#eeeeee"><td>&nbsp;</td>
+	<td width="100">&nbsp;<a href="javascript:sortBy('name','asc','text')" class="title">name</a></td>
+<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+<td width="45" align="center"><a href="javascript:sortBy('points','asc','numeric')" class="title">&nbsp;points</a><a href="#points" class="title">*</a></td>
+<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+
+	<td align="center" width="45"><a href="javascript:sortBy('r6','desc','numeric')" class="title">Win</a></td>
+
+	<td align="center" width="45"><a href="javascript:sortBy('r5','desc','numeric')" class="title">2nd<br>Place</a></td>
+
+	<td align="center" width="45"><a href="javascript:sortBy('r4','desc','numeric')" class="title">Semi<br>Final</a></td>
+
+	<td align="center" width="45"><a href="javascript:sortBy('r3','desc','numeric')" class="title">3rd<br>Round</a></td>
+
+	<td align="center" width="45"><a href="javascript:sortBy('r2','desc','numeric')" class="title">2nd<br>Round</a></td>
+
+	<td align="center" width="45"><a href="javascript:sortBy('r1','desc','numeric')" class="title">1st<br>Round</a></td>
+
+<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+<td align="center" width="45">
+	<a href="javascript:sortBy('weeks','desc','numeric')" class="title">weeks<br>played</a>
+</td>
+<td align="center" width="45">
+	<a href="javascript:sortBy('av','desc','numeric')" class="title">avg<br>round</a>
+</td>
+
+	<td align="center" width="45">
+		<a href="javascript:sortBy('played','desc','numeric')" class="title">games<br>played</a>
+	</td>
+	<td align="center" width="45">
+		<a href="javascript:sortBy('won','desc','numeric')" class="title">games<br>won</a>
+	</td>
+	<td align="center" width="45">
+		<a href="javascript:sortBy('ratio','desc','numeric')" class="title">win<br>ratio</a>
+	</td>
+	<td align="center" width="45">
+		<a href="javascript:sortBy('bb','desc','numeric')" class="title">buy<br>backs</a>
+	</td>
+
+</tr>
+
+
+
+
+
+
+	<a href="player.cfm?nm=DEAN&4111811448"><tr onClick="location='player.cfm?nm=DEAN&4111811448'" onMouseOver="roll(this,1)" onMouseOut="roll(this,0)" class="list">
+	<td align="right" class="sm3">&nbsp;1&nbsp;</td>
+	<td nowrap>&nbsp;<a href="player.cfm?nm=DEAN&4111811448" class="black">DEAN</a>&nbsp;</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">16</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">1</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">1</td>
+	<td align="center"> 6.0</td>
+
+		<td align="center">5</td>
+		<td align="center">5</td>
+		<td align="center">1.00</td>
+		<td align="center">-</td>
+
+	</tr>
+	</a>
+
+
+
+
+
+	<a href="player.cfm?nm=PHIL%20P&4111811448"><tr onClick="location='player.cfm?nm=PHIL%20P&4111811448'" onMouseOver="roll(this,1)" onMouseOut="roll(this,0)" class="list">
+	<td align="right" class="sm3">&nbsp;2&nbsp;</td>
+	<td nowrap>&nbsp;<a href="player.cfm?nm=PHIL%20P&4111811448" class="black">PHIL P</a>&nbsp;</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">8</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">-</td><td align="center">1</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">1</td>
+	<td align="center"> 5.0</td>
+
+		<td align="center">5</td>
+		<td align="center">4</td>
+		<td align="center"> .80</td>
+		<td align="center">-</td>
+
+	</tr>
+	</a>
+
+
+
+
+
+	<a href="player.cfm?nm=DAVE%20G&4111811448"><tr onClick="location='player.cfm?nm=DAVE%20G&4111811448'" onMouseOver="roll(this,1)" onMouseOut="roll(this,0)" class="list">
+	<td align="right" class="sm3">&nbsp;3&nbsp;</td>
+	<td nowrap>&nbsp;<a href="player.cfm?nm=DAVE%20G&4111811448" class="black">DAVE G</a>&nbsp;</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">4</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">-</td><td align="center">-</td><td align="center">1</td><td align="center">-</td><td align="center">-</td><td align="center">-</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">1</td>
+	<td align="center"> 4.0</td>
+
+		<td align="center">4</td>
+		<td align="center">3</td>
+		<td align="center"> .75</td>
+		<td align="center">-</td>
+
+	</tr>
+	</a>
+
+
+
+
+
+	<a href="player.cfm?nm=PHIL%20R&4111811448"><tr onClick="location='player.cfm?nm=PHIL%20R&4111811448'" onMouseOver="roll(this,1)" onMouseOut="roll(this,0)" class="list">
+	<td align="right" class="sm3">&nbsp;4&nbsp;</td>
+	<td nowrap>&nbsp;<a href="player.cfm?nm=PHIL%20R&4111811448" class="black">PHIL R</a>&nbsp;</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">2</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">-</td><td align="center">-</td><td align="center">1</td><td align="center">-</td><td align="center">-</td><td align="center">-</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">1</td>
+	<td align="center"> 4.0</td>
+
+		<td align="center">6</td>
+		<td align="center">4</td>
+		<td align="center"> .67</td>
+		<td align="center">1</td>
+
+	</tr>
+	</a>
+
+
+
+
+
+	<a href="player.cfm?nm=REBECCA&4111811448"><tr onClick="location='player.cfm?nm=REBECCA&4111811448'" onMouseOver="roll(this,1)" onMouseOut="roll(this,0)" class="list">
+	<td align="right" class="sm3">&nbsp;4&nbsp;</td>
+	<td nowrap>&nbsp;<a href="player.cfm?nm=REBECCA&4111811448" class="black">REBECCA</a>&nbsp;</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">2</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">1</td><td align="center">-</td><td align="center">-</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">1</td>
+	<td align="center"> 3.0</td>
+
+		<td align="center">3</td>
+		<td align="center">2</td>
+		<td align="center"> .67</td>
+		<td align="center">-</td>
+
+	</tr>
+	</a>
+
+
+
+
+
+	<a href="player.cfm?nm=SMOKIN%20JOE&4111811448"><tr onClick="location='player.cfm?nm=SMOKIN%20JOE&4111811448'" onMouseOver="roll(this,1)" onMouseOut="roll(this,0)" class="list">
+	<td align="right" class="sm3">&nbsp;4&nbsp;</td>
+	<td nowrap>&nbsp;<a href="player.cfm?nm=SMOKIN%20JOE&4111811448" class="black">SMOKIN JOE</a>&nbsp;</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">2</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">1</td><td align="center">-</td><td align="center">-</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">1</td>
+	<td align="center"> 3.0</td>
+
+		<td align="center">3</td>
+		<td align="center">2</td>
+		<td align="center"> .67</td>
+		<td align="center">-</td>
+
+	</tr>
+	</a>
+
+
+
+
+
+	<a href="player.cfm?nm=PETER%20T&4111811448"><tr onClick="location='player.cfm?nm=PETER%20T&4111811448'" onMouseOver="roll(this,1)" onMouseOut="roll(this,0)" class="list">
+	<td align="right" class="sm3">&nbsp;4&nbsp;</td>
+	<td nowrap>&nbsp;<a href="player.cfm?nm=PETER%20T&4111811448" class="black">PETER T</a>&nbsp;</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">2</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">1</td><td align="center">-</td><td align="center">-</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">1</td>
+	<td align="center"> 3.0</td>
+
+		<td align="center">3</td>
+		<td align="center">2</td>
+		<td align="center"> .67</td>
+		<td align="center">-</td>
+
+	</tr>
+	</a>
+
+
+
+
+
+	<a href="player.cfm?nm=JUSTIN&4111811448"><tr onClick="location='player.cfm?nm=JUSTIN&4111811448'" onMouseOver="roll(this,1)" onMouseOut="roll(this,0)" class="list">
+	<td align="right" class="sm3">&nbsp;8&nbsp;</td>
+	<td nowrap>&nbsp;<a href="player.cfm?nm=JUSTIN&4111811448" class="black">JUSTIN</a>&nbsp;</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">1</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">1</td><td align="center">-</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">1</td>
+	<td align="center"> 2.0</td>
+
+		<td align="center">2</td>
+		<td align="center">1</td>
+		<td align="center"> .50</td>
+		<td align="center">-</td>
+
+	</tr>
+	</a>
+
+
+
+
+
+	<a href="player.cfm?nm=DAVE%20T&4111811448"><tr onClick="location='player.cfm?nm=DAVE%20T&4111811448'" onMouseOver="roll(this,1)" onMouseOut="roll(this,0)" class="list">
+	<td align="right" class="sm3">&nbsp;8&nbsp;</td>
+	<td nowrap>&nbsp;<a href="player.cfm?nm=DAVE%20T&4111811448" class="black">DAVE T</a>&nbsp;</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">1</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">1</td><td align="center">-</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">1</td>
+	<td align="center"> 2.0</td>
+
+		<td align="center">4</td>
+		<td align="center">2</td>
+		<td align="center"> .50</td>
+		<td align="center">1</td>
+
+	</tr>
+	</a>
+
+
+
+
+
+	<a href="player.cfm?nm=KATE&4111811448"><tr onClick="location='player.cfm?nm=KATE&4111811448'" onMouseOver="roll(this,1)" onMouseOut="roll(this,0)" class="list">
+	<td align="right" class="sm3">&nbsp;8&nbsp;</td>
+	<td nowrap>&nbsp;<a href="player.cfm?nm=KATE&4111811448" class="black">KATE</a>&nbsp;</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">1</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">1</td><td align="center">-</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">1</td>
+	<td align="center"> 2.0</td>
+
+		<td align="center">2</td>
+		<td align="center">1</td>
+		<td align="center"> .50</td>
+		<td align="center">-</td>
+
+	</tr>
+	</a>
+
+
+
+
+
+	<a href="player.cfm?nm=KIERAN&4111811448"><tr onClick="location='player.cfm?nm=KIERAN&4111811448'" onMouseOver="roll(this,1)" onMouseOut="roll(this,0)" class="list">
+	<td align="right" class="sm3">&nbsp;8&nbsp;</td>
+	<td nowrap>&nbsp;<a href="player.cfm?nm=KIERAN&4111811448" class="black">KIERAN</a>&nbsp;</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">1</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">1</td><td align="center">-</td><td align="center">-</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">1</td>
+	<td align="center"> 3.0</td>
+
+		<td align="center">5</td>
+		<td align="center">3</td>
+		<td align="center"> .60</td>
+		<td align="center">1</td>
+
+	</tr>
+	</a>
+
+
+
+
+
+	<a href="player.cfm?nm=DAN%20T&4111811448"><tr onClick="location='player.cfm?nm=DAN%20T&4111811448'" onMouseOver="roll(this,1)" onMouseOut="roll(this,0)" class="list">
+	<td align="right" class="sm3">&nbsp;8&nbsp;</td>
+	<td nowrap>&nbsp;<a href="player.cfm?nm=DAN%20T&4111811448" class="black">DAN T</a>&nbsp;</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">1</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">1</td><td align="center">-</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">1</td>
+	<td align="center"> 2.0</td>
+
+		<td align="center">2</td>
+		<td align="center">1</td>
+		<td align="center"> .50</td>
+		<td align="center">-</td>
+
+	</tr>
+	</a>
+
+
+
+
+
+	<a href="player.cfm?nm=MIKE&4111811448"><tr onClick="location='player.cfm?nm=MIKE&4111811448'" onMouseOver="roll(this,1)" onMouseOut="roll(this,0)" class="list">
+	<td align="right" class="sm3">&nbsp;8&nbsp;</td>
+	<td nowrap>&nbsp;<a href="player.cfm?nm=MIKE&4111811448" class="black">MIKE</a>&nbsp;</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">1</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">1</td><td align="center">-</td>
+	<td width="1"><img src="spacer.gif" width="1" height="1"></td>
+	<td align="center">1</td>
+	<td align="center"> 2.0</td>
+
+		<td align="center">2</td>
+		<td align="center">1</td>
+		<td align="center"> .50</td>
+		<td align="center">-</td>
+
+	</tr>
+	</a>
+
+
+</table>
+</td></tr></table>
+<div align="right" class="sm"><i>click for player profile&nbsp;</i></div>
+<div align="center"><br><a name="points"><br></a>
+<table cellspacing="0" cellpadding="0" border="1" bordercolor="silver">
+<tr><td colspan="2"><b>* 2016 Points System &nbsp;</b></td></tr>
+<tr><td nowrap>Win</td><td align="center">16</td></tr><tr><td nowrap>2nd Place</td><td align="center">8</td></tr><tr><td nowrap>Semi Final</td><td align="center">4</td></tr><tr><td nowrap>3rd Round</td><td align="center">2</td></tr><tr><td nowrap>2nd Round</td><td align="center">1</td></tr><tr><td nowrap>1st Round</td><td align="center">0</td></tr>
+<tr><td><i>buyback penalty</i></td><td align="center"><i>x0.5</i></td></tr>
+</table>
+</div>
+</blockquote>
+
+</td></tr>
+</table>
+
+<br><br><br><br>
+
+</body>
+</html>
