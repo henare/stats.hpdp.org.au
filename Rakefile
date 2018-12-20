@@ -1,4 +1,5 @@
 require 'mechanize'
+require 'pry'
 
 desc "Build NPC pages"
 task :npc do
