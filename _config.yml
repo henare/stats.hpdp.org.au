@@ -1,0 +1,7 @@
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - Rakefile
+  - docker-compose.yml
+  - vendor
