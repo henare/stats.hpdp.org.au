@@ -1,6 +1,6 @@
 body,td,p {
   font-family: verdana,sans-serif;
-  font-size: 8pt;
+  font-size: 14pt;
   border-top-width: 0;
   border-left-width: 0
 }
@@ -21,7 +21,6 @@ h1 {
 .pgTitle {
   font-family: verdana,times,serif;
   font-weight: bold;
-  font-size: 12pt
 }
 
 select,input {
