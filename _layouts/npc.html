@@ -1,79 +1,11 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script language="JavaScript">if(this!=top)	top.location="."</script>
-
-<meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="expires" content="0">
-<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
-
-
-
-<html>
-<head>
-
-<title>HPDP Nick Power Cup</title>
-<link rel="stylesheet" type="text/css" href="/assets/style.css">
-<script language="JavaScript">
-W3C = (document.getElementById) ? 1 : 0;
-IE4 = (document.all && !W3C) ? 1 : 0;
-doc=W3C?document.getElementsByTagName('*'):(IE4?document.all:false)
-function roll(cell,on,ttl){
-	if(!doc) return
-	if(ttl)
-		cell.style.color=on?"slateGray":"black"
-	else
-		cell.style.backgroundColor=on?"#eeeeee":"white"
-}
-function sortBy(f,d,t){
-	location="NickPower.cfm?sortfield="+f+"&dir="+d+"&type="+t+"&41118113531"
-}
-</script>
-</head>
-<body topmargin="2">
-
-<table border=0 cellspacing=0 cellpadding=0>
-<tr>
-<td width="150" rowspan=32 nowrap valign="top"><a href="../" class="h1">HPDP&nbsp;<br>Pool Comp<br>{{ page.year }}</a>
+---
+layout: base
+title: HPDP Nick Power Cup
+---
+<td width="150" rowspan=32 nowrap valign="top">
+  <a href="../" class="h1">HPDP&nbsp;<br>Pool Comp<br>{{ page.year }}</a>
 </td>
 <td valign="top">
-<br><br>
-
-{{ content }}
-
+  <br><br>
+  {{ content }}
 </td>
-</tr>
-</table>
-
-</body>
-</html>
