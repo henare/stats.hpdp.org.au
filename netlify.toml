@@ -5,6 +5,6 @@
 
 [[redirects]]
   from = "/*"
-  to = "https://hpdp.org.au/stats/:splat"
+  to = "https://hpdp.org/stats/:splat"
   status = 301
   force = true
