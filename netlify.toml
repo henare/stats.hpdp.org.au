@@ -1,0 +1,4 @@
+[build]
+  # Skip the build command since we only need redirects
+  command = "echo 'No build needed - using redirects only'"
+  publish = "."
