@@ -2,3 +2,9 @@
   # Skip the build command since we only need redirects
   command = "echo 'No build needed - using redirects only'"
   publish = "."
+
+[[redirects]]
+  from = "/*"
+  to = "https://hpdp.org.au/stats/:splat"
+  status = 301
+  force = true
